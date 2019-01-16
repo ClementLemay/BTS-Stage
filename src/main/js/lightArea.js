@@ -4,6 +4,7 @@ function colorAreaLight() {
 
 function displayClikableArea() {
   $('.map').maphilight();
+
   $('#AreaEntranceLight').click(function(e) {
     onClickEntranceLightArea();
   });
@@ -12,20 +13,24 @@ function displayClikableArea() {
     onClickOutDoorLightArea();
   });
 
-  $('#BedRoom').click(function(e) {
+  $('#BedRoomLight').click(function(e) {
     onClickBedRoomLightArea();
   });
 
-  $('#LivingRoom').click(function(e) {
+  $('#LivingRoomLight').click(function(e) {
     onClickLivingRoomLightArea();
   });
 
-  $('#Office').click(function(e) {
+  $('#OfficeLight').click(function(e) {
     onClickOfficeLightArea();
   });
 
-  $('#BathRoom').click(function(e) {
+  $('#BathRoomLight').click(function(e) {
     onClickBathRoomLightArea();
+  });
+
+  $('#AllTheLight').click(function(e) {
+    onClickAllTheLightArea();
   });
 }
 
@@ -55,7 +60,7 @@ function onClickBedRoomLightArea() {
 
 function onClickLivingRoomLightArea() {
     var data = $('#LivingRoomLight').mouseout().data('maphilight') || {};
-    data.alwaysOn = !data.alwaysOn;
+    data.alwaysOn = !data.alwaysOn
     $('#LivingRoomLight').data('maphilight', data).trigger('alwaysOn.maphilight');
 }
 
@@ -69,4 +74,29 @@ function onClickBathRoomLightArea() {
     var data = $('#BathRoomLight').mouseout().data('maphilight') || {};
     data.alwaysOn = !data.alwaysOn;
     $('#BathRoomLight').data('maphilight', data).trigger('alwaysOn.maphilight');
+}
+
+function onClickAllTheLightArea() {
+  var data = $('#AllTheLight').mouseout().data('maphilight') || {};
+  data.alwaysOn = !data.alwaysOn
+  $('#AllTheLight').data('maphilight', data).trigger('alwaysOn.maphilight');
+
+  if (areaOff("#BedRoomLight")==data.alwaysOn) {
+    onClickBedRoomLightArea();
+  }
+  if (areaOff("#AreaEntranceLight")==data.alwaysOn) {
+    onClickEntranceLightArea();
+  }
+  if (areaOff("#OutDoorLight")==data.alwaysOn) {
+    onClickOutDoorLightArea();
+  }
+  if (areaOff("#LivingRoomLight")==data.alwaysOn) {
+    onClickLivingRoomLightArea();
+  }
+  if (areaOff("#BathRoomLight")==data.alwaysOn) {
+    onClickBathRoomLightArea();
+  }
+  if (areaOff("#OfficeLight")==data.alwaysOn) {
+    onClickOfficeLightArea();
+  }
 }

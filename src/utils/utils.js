@@ -19,3 +19,8 @@ function randomID() {
   tabID["ID"] = ID;
   return(tabID);
 }
+
+function areaOff(areaName){
+  var data = $(areaName).mouseout().data('maphilight') || {};
+  return !data.alwaysOn;
+}
