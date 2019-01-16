@@ -1,0 +1,112 @@
+<html lang="fr">
+    <title>index</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+
+    <!-- external CSS libs -->
+    <link rel="stylesheet" href="lib/external/js/jqx/6.2.0/styles/jqx.base.css" type="text/css" />
+
+    <!-- external JS libs -->
+    <script type="text/javascript" src="lib/external/js/jquery/3.3.1/3.3.1.min.js"></script>
+    <script type="text/javascript" src="lib/external/js/highlight/1.4.0/jquery.maphilight.min.js"></script>
+    <script type="text/javascript" src="lib/external/js/highlight/1.4.0/jquery.maphilight.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxcore.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxdata.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxdraw.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxgauge.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxbuttons.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxslider.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxexpander.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxcheckbox.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxradiobutton.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxchart.core.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxswitchbutton.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxnotification.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxknob.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxnumberinput.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxloader.js"></script>
+
+    <script>
+			var projetN1 = "1.0.0";
+
+			function loadJS(filePath) {
+				var script = document.createElement('script');
+				script.src = filePath + '?v=' + projetN1;
+				script.async = false;
+				document.getElementsByTagName('head')[0].appendChild(script);
+			}
+
+			function loadCSS(filePath) {
+				var link = document.createElement('link');
+				link.href = filePath + '?v=' + projetN1;
+				link.rel = 'stylesheet';
+				document.getElementsByTagName('head')[0].appendChild(link);
+			}
+
+			loadCSS("src/media/css/style.css");
+
+      loadJS("src/common/displayProperties.js");
+
+      loadJS("src/utils/display.js");
+			loadJS("src/utils/utils.js");
+      loadJS("src/main/js/toolBar.js");
+      loadJS("src/main/js/lightArea.js");
+			loadJS("src/main/js/main.js");
+		</script>
+
+<body class='default'>
+  <div class="demo-gauge" style="position: relative; height: 380px;">
+    <div id='gauge' style="position: absolute; top: 0px; left: 0px;"></div>
+    <div id='slider' style="position: absolute; top: 250px; left: 93px"></div>
+
+    <div id="panel-barometer" style="margin-left: 380px;">
+        <div id='chartContainer' style="width:850px; height:500px"></div>
+
+        <div id="gaugeTherm" style="  style=position: relative; margin:-450px 0px 0px 1015px"></div>
+    </div>
+  </div>
+
+    <div style='margin:160px 0px 0px 500px' id='jqxWidget'>
+      <div>
+        <input style='margin:50px ;' type="button" value="Lumière Entrée" id='ToggleBtnEntrance' />
+        <input type="button" style='margin:0px 0px 0px 0px;' value="Lumière Extérieur" id='ToggleBtnOutDoor' />
+      </div>
+    </div>
+
+    <div id="settings-panel" style='margin-top: -80px'>
+        <div class="settings-section">
+            <div class="settings-label">Lumière entrée</div>
+            <div class="settings-setter">
+                <div id="SwitchBtnEntrance"></div>
+            </div>
+        </div>
+        <div class="settings-section">
+            <div class="settings-label">Lumière extérieur</div>
+            <div class="settings-setter">
+                <div id="SwitchBtnOutDoor"></div>
+            </div>
+        </div>
+    </div>
+    <div id="messageNotification" ></div>
+    <div id="spinner_mask" style="display: none;"></div>
+    <div id="jqxLoader" style="position:fixed"></div>
+    <div style="margin:100px 0px 0px 0px" id='container' style="width: 100px; height: 100px; top:143px; left:14px"></div>
+    <div style="margin:-600px 0px 0px 900px">
+      <img src="src/media/image/maison.png" alt="" class="map" usemap="#maison" style="border-style:none">
+    <map name="maison">
+      <area id="LivingRoomLight" title="LivingRoom" shape="rect" coords="155,249,353,360"
+        data-maphilight='{"strokeColor":"f4ff2d", "strokeWidth":5, "fillColor":"f4ff2d", "fillOpacity":0.6, "strokeOpacity": "1"}'/>
+      <area id="AreaEntranceLight" title="AreaEntranceLight" shape="rect" coords="365,249,514,360"
+        data-maphilight='{"strokeColor":"f4ff2d", "strokeWidth":5, "fillColor":"f4ff2d", "fillOpacity":0.6, "strokeOpacity": "1"}'/>
+      <area id="BedRoomLight" title="BedRoom" shape="rect" coords="93,131,277,237"
+        data-maphilight='{"strokeColor":"f4ff2d", "strokeWidth":5, "fillColor":"f4ff2d", "fillOpacity":0.6, "strokeOpacity": "1"}'/>
+      <area id="OfficeLight" title="Office" shape="poly" coords="93,105,93,119,406,119,406,105,249,13"
+        data-maphilight='{"strokeColor":"f4ff2d", "strokeWidth":5, "fillColor":"f4ff2d", "fillOpacity":0.6, "strokeOpacity": "1"}'/>
+      <area id="BathRoomLight" title="BathRoom" shape="poly" coords="289,131,289,237,514,237,514,221,406,157,406,131" class="group"
+        data-maphilight='{"strokeColor":"f4ff2d", "strokeWidth":5, "fillColor":"f4ff2d", "fillOpacity":0.6, "strokeOpacity": "1"}'/>
+      <area id="OutDoorLight" title="OutDoor" shape="poly" coords="39,360,143,360,143,249,67,249,39,266"
+        data-maphilight='{"strokeColor":"f4ff2d", "strokeWidth":5, "fillColor":"f4ff2d", "fillOpacity":0.6, "strokeOpacity": "1"}'/>
+    </map>
+  </div>
+  </body>
+</html>
