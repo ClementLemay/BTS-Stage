@@ -9,7 +9,6 @@ if (isset($_REQUEST['service'])) {
       echo json_encode(DataJson());
       break;
     case "sendClientInfo":
-      sleep(2);
       printLog();
       break;
   }

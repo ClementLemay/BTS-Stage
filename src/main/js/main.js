@@ -44,10 +44,13 @@ function onDataLoaded(data) {
   colorAreaLight();
 }
 
-function sendClientInfo(data) {
+function sendClientInfo() {
     showSpinner();
+    data = Object.assign(
+      dataInJson(),
+      randomID()
+    );
     console.log(data);
-    Object.assign(data, randomID());
     jQuery.ajax(
     {
       type:"POST",
@@ -78,4 +81,13 @@ function onClientInfoLoaded(request) {
   var resultJSON = JSON.parse(request);
   var message = "Request number : " + resultJSON["ID"] + " received";
   displayMessage(message, false);
+}
+
+function dataInJson() {
+  var temperature = {temperature : mainData.getTemperature()};
+  var pressure = {pressure : mainData.getPressure()};
+  var entranceLight = {entranceLight : mainData.getEntranceLight()};
+  var outdoorLight = {outdoorLight : mainData.getOutdoorLight()};
+  var obj = Object.assign({}, temperature, pressure, entranceLight, outdoorLight);
+  return (obj);
 }

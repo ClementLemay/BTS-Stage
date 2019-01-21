@@ -12,7 +12,6 @@ class displayProperties {
 
  getTemperature() {
    return this.temperature;
-   console.log(this.temperature);
  };
 
  getPressure() {
