@@ -1,7 +1,9 @@
 <?php
-function MockJson () {
+function LiveJson () {
+$temperature=shell_exec('python /var/www/html/src/main/python/scriptSonde.py');
+
   $data= array();
-  $data["Temperature"]=-11.5;
+  $data["Temperature"]=$temperature;
   $data["Pressure"]= 150;
   $data["EntranceLight"]= false;
   $data["OutdoorLight"]= true;

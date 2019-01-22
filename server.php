@@ -1,12 +1,18 @@
 <?php
 require ("src/main/php/mock.php");
+require ("src/main/php/LiveData.php");
 require ("src/utils/utils.php");
 
 if (isset($_REQUEST['service'])) {
   $service = $_REQUEST['service'];
   switch ($service){
     case "loadData":
-      echo json_encode(DataJson());
+      if (empty($Test=shell_exec('python /var/www/html/src/main/python/scriptSonde.py'))) {
+        echo json_encode(MockJson());
+      } else
+      {
+      echo json_encode(LiveJson());
+      }
       break;
     case "sendClientInfo":
       printLog();
