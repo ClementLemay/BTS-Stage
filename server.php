@@ -1,6 +1,7 @@
 <?php
 require ("src/main/php/mock.php");
 require ("src/main/php/LiveData.php");
+require ("src/main/php/execScript.php");
 require ("src/utils/utils.php");
 
 if (isset($_REQUEST['service'])) {
@@ -9,18 +10,18 @@ if (isset($_REQUEST['service'])) {
     case "loadData":
       if (empty($Test=shell_exec('python /var/www/html/src/main/python/scriptSonde.py'))) {
         echo json_encode(MockJson());
-      } else
-      {
-      echo json_encode(LiveJson());
+      }else {
+        echo json_encode(LiveJson());
       }
       break;
     case "sendClientInfo":
       printLog();
       break;
     case "scriptCall":
-    $url = $_REQUEST['url'];
-      $log = shell_exec("python /var/www/html/src/main/python/toggle.py on 2>&1");
-      echo $log;
+      $device = $_REQUEST['device'];
+      $room = $_REQUEST['room'];
+      $state = $_REQUEST['state'];
+      allScript($device,$state);
     break;
   }
 } else

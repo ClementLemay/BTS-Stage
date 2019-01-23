@@ -94,12 +94,12 @@ function dataInJson() {
   return (obj);
 }
 
-function scriptCall(url) {
+function scriptCall(name,room,state) {
     showSpinner();
     jQuery.ajax(
     {
       type:"POST",
-      url:"server.php?service=scriptCall",
+      url:"server.php?service=scriptCall&Room="+ room +"&device=" + name + "&state="+ state,
       timeout: 5000,
       xhrFields: {
         withCredentials: true
@@ -112,10 +112,4 @@ function scriptCall(url) {
         hideSpinner();
       }
     });
-
-    function handleError(code, message) {
-      console.error("[index] server call failure : " + code + ", " + message);
-      displayMessage("Une erreur est survenue",true);
-      hideSpinner();
-    }
 }
