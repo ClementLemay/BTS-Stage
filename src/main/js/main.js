@@ -19,7 +19,9 @@ function loadData() {
      },
      error: function(jqXHR, textStatus, errorThrown) {
        hideSpinner();
-       handleError(data.status, "technical error");
+       console.log(jqXHR);
+       console.log(textStatus);
+       console.log(errorThrown);
      }
    });
  }
@@ -90,4 +92,30 @@ function dataInJson() {
   var outdoorLight = {outdoorLight : mainData.getOutdoorLight()};
   var obj = Object.assign({}, temperature, pressure, entranceLight, outdoorLight);
   return (obj);
+}
+
+function scriptCall(url) {
+    showSpinner();
+    jQuery.ajax(
+    {
+      type:"POST",
+      url:"server.php?service=scriptCall",
+      timeout: 5000,
+      xhrFields: {
+        withCredentials: true
+      },
+      success: function(data, textStatus, jqXHR) {
+        hideSpinner();
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        handleError(500, "");
+        hideSpinner();
+      }
+    });
+
+    function handleError(code, message) {
+      console.error("[index] server call failure : " + code + ", " + message);
+      displayMessage("Une erreur est survenue",true);
+      hideSpinner();
+    }
 }

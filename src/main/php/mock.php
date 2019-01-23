@@ -1,5 +1,5 @@
 <?php
-function MockJson () {
+function MockJson() {
   $data= array();
   $data["Temperature"]=-11.5;
   $data["Pressure"]= 150;

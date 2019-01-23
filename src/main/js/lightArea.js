@@ -15,6 +15,7 @@ function displayClikableArea() {
 
   $('#BedRoomLight').click(function(e) {
     onClickBedRoomLightArea();
+    console.log("test");
   });
 
   $('#LivingRoomLight').click(function(e) {
@@ -31,6 +32,7 @@ function displayClikableArea() {
 
   $('#AllTheLight').click(function(e) {
     onClickAllTheLightArea();
+
   });
 }
 
@@ -68,6 +70,14 @@ function onClickOfficeLightArea() {
     var data = $('#OfficeLight').mouseout().data('maphilight') || {};
     data.alwaysOn = !data.alwaysOn;
     $('#OfficeLight').data('maphilight', data).trigger('alwaysOn.maphilight');
+    if(data.alwayOn){
+      scriptCall("/var/www/html/src/main/python/toggle.py off 2>&1");
+      console.log(data.alwaysOn);
+    }
+    else  {
+      scriptCall("/var/www/html/src/main/python/toggle.py on 2>&1");
+      console.log(data.alwaysOn);
+    }
 }
 
 function onClickBathRoomLightArea() {

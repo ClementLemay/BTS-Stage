@@ -17,6 +17,11 @@ if (isset($_REQUEST['service'])) {
     case "sendClientInfo":
       printLog();
       break;
+    case "scriptCall":
+    $url = $_REQUEST['url'];
+      $log = shell_exec("python /var/www/html/src/main/python/toggle.py on 2>&1");
+      echo $log;
+    break;
   }
 } else
 {
