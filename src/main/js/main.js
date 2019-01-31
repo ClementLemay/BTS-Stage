@@ -108,7 +108,6 @@ function scriptCall(name,room,state) {
         hideSpinner();
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        handleError(500, "");
         hideSpinner();
       }
     });

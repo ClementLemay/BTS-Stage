@@ -177,21 +177,22 @@ function displayClickableGauge(data, inputOptions) {
 function displayThermometer(Temperature) {
     var majorTicks = { size: '10%', interval: 5 };
     var minorTicks = { size: '5%', interval: 2.5, style: { 'stroke-width': 1, stroke: '#aaaaaa'} };
-    var labels = { interval: 15 };
+    var labels = { interval: 2 };
     $('#gaugeTherm').jqxLinearGauge(
       {
         orientation: 'vertical',
         labels: labels,
         ticksMajor: majorTicks,
         ticksMinor: minorTicks,
-        max: 50,
+        max: 25,
+        min: 10,
         value: -20,
         pointer: { size: '6%' },
         colorScheme: 'scheme05',
         ranges: [
-        { startValue: -10, endValue: 10, style: { fill: '#FFF157', stroke: '#FFF157'} },
-        { startValue: 10, endValue: 25, style: { fill: '#FFA200', stroke: '#FFA200'} },
-        { startValue: 25, endValue: 50, style: { fill: '#FF4800', stroke: '#FF4800'}}]
+        { startValue: 10, endValue: 15, style: { fill: '#FFF157', stroke: '#FFF157'} },
+        { startValue: 15, endValue: 20, style: { fill: '#FFA200', stroke: '#FFA200'} },
+        { startValue: 20, endValue: 25, style: { fill: '#FF4800', stroke: '#FF4800'}}]
     });
     $('#gaugeTherm').jqxLinearGauge('value', Temperature);
 

@@ -1,9 +1,9 @@
 <?php
 function MockJson() {
   $data= array();
-  $data["Temperature"]=-11.5;
+  $data["Temperature"]=lastValueOf("05:04:13:B7");
   $data["Pressure"]= 150;
-  $data["EntranceLight"]= false;
+  $data["EntranceLight"]= lastValueOf('01:8E:F5:D0');
   $data["OutdoorLight"]= true;
   $data["History"]= array(
     "2018" => array("Janvier"=>7,"Février"=>5,"Mars"=>7,"Avril"=>13,"Mai"=>15,"Juin"=>17,"Juillet"=>22,"Aout"=>22,"Septembre"=>18,"Otobre"=>13,"Novembre"=>8,"Décembre"=>6),
