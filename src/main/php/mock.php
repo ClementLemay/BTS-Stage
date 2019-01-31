@@ -1,7 +1,7 @@
 <?php
 function MockJson() {
   $data= array();
-  $data["Temperature"]=-11.5;
+  $data["Temperature"]=lastValueOf("05:04:13:B7");
   $data["Pressure"]= 150;
   $data["EntranceLight"]= false;
   $data["OutdoorLight"]= true;

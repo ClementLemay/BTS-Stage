@@ -2,6 +2,7 @@
 require ("src/main/php/mock.php");
 require ("src/main/php/LiveData.php");
 require ("src/main/php/execScript.php");
+require ("src/main/php/accessBD.php");
 require ("src/utils/utils.php");
 
 if (isset($_REQUEST['service'])) {
@@ -19,9 +20,9 @@ if (isset($_REQUEST['service'])) {
       break;
     case "scriptCall":
       $device = $_REQUEST['device'];
-      $room = $_REQUEST['room'];
+      $room = $_REQUEST['Room'];
       $state = $_REQUEST['state'];
-      allScript($device,$state);
+      callScript($device,$room,$state);
     break;
   }
 } else

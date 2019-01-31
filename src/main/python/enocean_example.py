@@ -7,6 +7,7 @@ from enocean.protocol.packet import RadioPacket
 from enocean.protocol.constants import PACKET, RORG
 import sys
 import traceback
+from parsingLog import *
 
 try:
     import queue
@@ -36,11 +37,13 @@ while communicator.is_alive():
     try:
         # Loop to empty the queue...
         packet = communicator.receive.get(block=True, timeout=1)
-
-        if packet.packet_type == PACKET.RADIO and packet.rorg == RORG.BS4:
+	vreturn = packet
+	if packet.packet_type == PACKET.RADIO and packet.rorg == RORG.BS4:
             # parse packet with given FUNC and TYPE
             for k in packet.parse_eep(0x02, 0x05):
                 print('%s: %s' % (k, packet.parsed[k]))
+		string = ('%s: %s' % (k, packet.parsed[k]))
+		parserTemp(string,vreturn)
         if packet.packet_type == PACKET.RADIO and packet.rorg == RORG.BS1:
             # alternatively you can select FUNC and TYPE explicitely
             packet.select_eep(0x00, 0x01)
@@ -48,9 +51,16 @@ while communicator.is_alive():
             packet.parse_eep()
             for k in packet.parsed:
                 print('%s: %s' % (k, packet.parsed[k]))
+		string=('%s: %s' % (k, packet.parsed[k]))
+		parserDoor(string, vreturn)
         if packet.packet_type == PACKET.RADIO and packet.rorg == RORG.RPS:
-            for k in packet.parse_eep(0x02, 0x02):
-                print('%s: %s' % (k, packet.parsed[k]))
+	    string = ' '
+	    for k in packet.parse_eep(0x02, 0x02):
+		print('%s: %s' % (k, packet.parsed[k]))
+		char = ('%s: %s' % (k, packet.parsed[k]))
+		string = string + char
+	    parserButton(string, vreturn)
+	    del string
     except queue.Empty:
         continue
     except KeyboardInterrupt:
