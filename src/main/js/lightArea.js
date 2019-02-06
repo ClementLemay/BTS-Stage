@@ -15,7 +15,6 @@ function displayClikableArea() {
 
   $('#BedRoomLight').click(function(e) {
     onClickBedRoomLightArea();
-    console.log("test");
   });
 
   $('#LivingRoomLight').click(function(e) {

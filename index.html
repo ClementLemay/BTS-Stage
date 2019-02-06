@@ -26,6 +26,11 @@
     <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxknob.js"></script>
     <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxnumberinput.js"></script>
     <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxloader.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxdatetimeinput.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxcalendar.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxnumberinput.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0/jqxtooltip.js"></script>
+    <script type="text/javascript" src="lib/external/js/jqx/6.2.0//globalization/globalize.js"></script>
 
     <script>
 			var projetN1 = "1.0.0";
@@ -56,9 +61,10 @@
 		</script>
 
 <body class='default'>
-  <div class="demo-gauge" style="position: relative; height: 380px;">
+  <div class="demo-gauge" style="position: relative; height: 500px;">
     <div id='gauge' style="position: absolute; top: 0px; left: 0px;"></div>
     <div id='slider' style="position: absolute; top: 250px; left: 93px"></div>
+
 
     <div id="panel-barometer" style="margin-left: 380px;">
         <div id='chartContainer' style="width:850px; height:500px"></div>
@@ -67,7 +73,9 @@
     </div>
   </div>
 
-    <div style='margin:160px 0px 0px 500px' id='jqxWidget'>
+  <div id='DateTimeInput' style="margin-left:705px"></div>
+
+    <div style='margin:0px 0px 0px 500px' id='jqxWidget'>
       <div>
         <input style='margin:50px ;' type="button" value="Lumière Entrée" id='ToggleBtnEntrance' />
         <input type="button" style='margin:0px 0px 0px 0px;' value="Lumière Extérieur" id='ToggleBtnOutDoor' />
@@ -116,6 +124,6 @@
       <area id="AllTheLight" title="AllTheLight" shape="circle" coords="472,50,37.5"
         data-maphilight='{"groupBy":".group","strokeColor":"f4ff2d", "strokeWidth":5, "fillColor":"f4ff2d", "fillOpacity":0.6, "strokeOpacity": "1"}'/>
     </map>
-  </div>
+    </div>
   </body>
 </html>

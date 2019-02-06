@@ -41,6 +41,7 @@ function onDataLoaded(data) {
   initClickableGauge(mainData);
   displayBarometer(mainData.getPressure());
   displayThermometer(mainData.getTemperature());
+  displayDateTimeInput();
   displayToolBar();
   initLightArea(mainData.getEntranceLight(),mainData.getOutdoorLight());
   colorAreaLight();
@@ -95,20 +96,45 @@ function dataInJson() {
 }
 
 function scriptCall(name,room,state) {
-    showSpinner();
-    jQuery.ajax(
-    {
-      type:"POST",
-      url:"server.php?service=scriptCall&Room="+ room +"&device=" + name + "&state="+ state,
-      timeout: 5000,
-      xhrFields: {
-        withCredentials: true
-      },
-      success: function(data, textStatus, jqXHR) {
-        hideSpinner();
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        hideSpinner();
-      }
-    });
+  showSpinner();
+  jQuery.ajax(
+  {
+    type:"POST",
+    url:"server.php?service=scriptCall&Room="+ room +"&device=" + name + "&state="+ state,
+    timeout: 5000,
+    xhrFields: {
+      withCredentials: true
+    },
+    success: function(data, textStatus, jqXHR) {
+      hideSpinner();
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      hideSpinner();
+    }
+  });
+}
+
+function graphicChange(date1,date2) {
+  showSpinner();
+  jQuery.ajax(
+  {
+    type:"POST",
+    url:"server.php?service=graphicChange&startDate="+ date1 +"&endDate=" + date2,
+    timeout: 5000,
+    xhrFields: {
+      withCredentials: true
+    },
+    success: function(data, textStatus, jqXHR) {
+      hideSpinner();
+      onDynamicTabloaded(data);
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      hideSpinner();
+    }
+  });
+}
+
+function onDynamicTabloaded(data) {
+  var dataValues = JSON.parse(data);
+  mainData.setDynamicHistory(data);
 }

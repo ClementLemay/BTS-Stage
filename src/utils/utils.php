@@ -38,4 +38,39 @@ function serverResponse($id) {
   $request["ID"] = $id;
   echo json_encode($request);
 }
+
+function diffDateToInt($StringDateDeb,$StringDateFin) {
+	$DateDeb = new DateTime($StringDateDeb);
+	$DateFin = new DateTime($StringDateFin);
+	$interval=$DateDeb->diff($DateFin);
+	$interval=$interval->format('%R%a days');
+	return $interval;
+}
+
+function stringToDate($string) {
+	$date = new DateTime($string);
+	return $date;
+}
+
+function dateToString($strDate,$type) {
+	$date = new DateTime($strDate);
+	switch ($type) {
+		case '1':
+			$date = date("F", mktime(0,0, 0, $date->format('m'), $date->format('d'), $date->format('Y')));
+			break;
+
+		case '2':
+			$date = date("j \ F", mktime(0,0, 0, $date->format('m'), $date->format('d'), $date->format('Y')));
+			break;
+
+		case '3':
+			$date = date("D j \ F", mktime(0,0, 0, $date->format('m'), $date->format('d'), $date->format('Y')));
+			break;
+
+		case '4':
+			$date = substr($strDate,11,16);
+			break;
+	}
+	return $date;
+}
 ?>

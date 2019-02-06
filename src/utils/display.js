@@ -15,8 +15,8 @@ function initCurve(history2018, history1961) {
        ];
 
        var settings = {
-           title: "U.S. Historical Home Prices (1950-2017)",
-           description: "Source: http://www.econ.yale.edu/~shiller/data.htm",
+           title: "Température moyenne",
+           description: "",
            enableAnimations: true,
            showLegend: true,
            padding: { left: 5, top: 5, right: 35, bottom: 5 },
@@ -176,23 +176,23 @@ function displayClickableGauge(data, inputOptions) {
 
 function displayThermometer(Temperature) {
     var majorTicks = { size: '10%', interval: 5 };
-    var minorTicks = { size: '5%', interval: 2.5, style: { 'stroke-width': 1, stroke: '#aaaaaa'} };
-    var labels = { interval: 2 };
+    var minorTicks = { size: '5%', interval: 1, style: { 'stroke-width': 1, stroke: '#aaaaaa'} };
+    var labels = { interval: 5 };
     $('#gaugeTherm').jqxLinearGauge(
       {
         orientation: 'vertical',
         labels: labels,
         ticksMajor: majorTicks,
         ticksMinor: minorTicks,
-        max: 25,
+        max: 30,
         min: 10,
         value: -20,
         pointer: { size: '6%' },
         colorScheme: 'scheme05',
         ranges: [
         { startValue: 10, endValue: 15, style: { fill: '#FFF157', stroke: '#FFF157'} },
-        { startValue: 15, endValue: 20, style: { fill: '#FFA200', stroke: '#FFA200'} },
-        { startValue: 20, endValue: 25, style: { fill: '#FF4800', stroke: '#FF4800'}}]
+        { startValue: 15, endValue: 25, style: { fill: '#FFA200', stroke: '#FFA200'} },
+        { startValue: 25, endValue: 30, style: { fill: '#FF4800', stroke: '#FF4800'}}]
     });
     $('#gaugeTherm').jqxLinearGauge('value', Temperature);
 
@@ -273,4 +273,7 @@ function displayOutsideLightSwitch() {
   });
 }
 
-  // TODO: Faire la séparation entre init et display
+function displayDateTimeInput() {
+  $("#DateTimeInput").jqxDateTimeInput({ width: 250, height: 25,  selectionMode: 'range', formatString: 'd'});
+
+}

@@ -34,6 +34,10 @@ class displayProperties {
    return (this.history["1961"]);
  };
 
+ setDynamicHistory(tab) {
+   this.history["Dyn"] = tab;
+ }
+
  setEntranceLight(aEntranceLight) {
    this.entranceLight = aEntranceLight;
  };
@@ -45,4 +49,9 @@ class displayProperties {
  setPressure(pressure){
    this.pressure = pressure;
  };
+
+ getSampleData() {
+   foreach(getHistory2018)
+
+ }
 }

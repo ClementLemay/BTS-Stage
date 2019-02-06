@@ -1,5 +1,5 @@
 <?php
-require ("src/main/php/mock.php");
+require ("src/main/php/classData.php");
 require ("src/main/php/LiveData.php");
 require ("src/main/php/execScript.php");
 require ("src/main/php/accessBD.php");
@@ -9,7 +9,7 @@ if (isset($_REQUEST['service'])) {
   $service = $_REQUEST['service'];
   switch ($service){
     case "loadData":
-        echo json_encode(MockJson());
+        echo json_encode(SendData());
       break;
     case "sendClientInfo":
       printLog();
@@ -19,6 +19,10 @@ if (isset($_REQUEST['service'])) {
       $room = $_REQUEST['Room'];
       $state = $_REQUEST['state'];
       callScript($device,$room,$state);
+    case "graphicChange":
+      $startDate = $_REQUEST['startDate'];
+      $endDate = $_REQUEST['endDate'];
+      echo json_encode(updateGraphic($startDate,$endDate));
     break;
   }
 } else

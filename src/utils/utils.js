@@ -24,3 +24,15 @@ function areaOff(areaName){
   var data = $(areaName).mouseout().data('maphilight') || {};
   return !data.alwaysOn;
 }
+
+function createSampleData(tab) {
+  for(var i= 0; i < tab.length; i++) {
+    if(isset(vreturn)){
+      var vreturn = vreturn + ',{Test: '+tab[i]+' ; Moyenne : '+tab[i]+'}';
+    }else {
+      var vreturn = '{Test: '+tab[i]+' ; Moyenne : '+tab[i]+'}';
+    }
+  }
+  vreturn += "];";
+  return vreturn;
+}
