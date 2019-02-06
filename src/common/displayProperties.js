@@ -8,6 +8,7 @@ class displayProperties {
     this.history = [];
       this.history["2018"] = history2018;
       this.history["1961"] = history1961;
+      this.history["Dyn"];
     }
 
  getTemperature() {
@@ -27,7 +28,7 @@ class displayProperties {
  };
 
  getHistory2018() {
-   return (this.history["2018"]);
+   return this.history["2018"];
  };
 
  getHistory1961() {
@@ -35,7 +36,15 @@ class displayProperties {
  };
 
  setDynamicHistory(tab) {
-   this.history["Dyn"] = tab;
+   
+   var subTab = tab["History"];
+   var subTab = subTab["TEST"];
+   this.history["Dyn"] = subTab;
+
+ }
+
+ getDynamicHistory() {
+   return (this.history["Dyn"]);
  }
 
  setEntranceLight(aEntranceLight) {
@@ -49,9 +58,4 @@ class displayProperties {
  setPressure(pressure){
    this.pressure = pressure;
  };
-
- getSampleData() {
-   foreach(getHistory2018)
-
- }
 }

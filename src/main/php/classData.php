@@ -12,7 +12,7 @@ function SendData() {
    return $data;
  }
 function updateGraphic($startDate,$endDate){
-  $data["History"]= array("2019" => TempController($startDate,$endDate));
+  $data["History"]= array("TEST" => TempController($startDate,$endDate));
   return $data;
 }
 ?>

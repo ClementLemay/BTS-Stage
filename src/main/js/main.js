@@ -37,7 +37,7 @@ function onDataLoaded(data) {
     dataValues.History[1961]
   );
 
-  initCurve(mainData.getHistory2018(), mainData.getHistory1961());
+  initCurve();
   initClickableGauge(mainData);
   displayBarometer(mainData.getPressure());
   displayThermometer(mainData.getTemperature());
@@ -136,5 +136,7 @@ function graphicChange(date1,date2) {
 
 function onDynamicTabloaded(data) {
   var dataValues = JSON.parse(data);
-  mainData.setDynamicHistory(data);
+  mainData.setDynamicHistory(dataValues);
+  var tab = mainData.getDynamicHistory();
+  initCurve(tab);
 }

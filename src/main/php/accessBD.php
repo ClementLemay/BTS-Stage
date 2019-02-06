@@ -44,7 +44,7 @@ while($row=mysqli_fetch_array($req)) {
     $vreturn = AvgOfArrayMap($Array_map,0,7,1);
     return $vreturn;
   }
-  if ($nbDays<30 && $nbDays>7) {
+  if ($nbDays<=30 && $nbDays>7) {
     $vreturn = AvgOfArrayMap($Array_map,0,10,2);
     return $vreturn;
   }

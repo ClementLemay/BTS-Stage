@@ -1,64 +1,70 @@
-function initCurve(history2018, history1961) {
-      var sampleData = [
-           { Mois: 'Janvier', 'Moyenne de 2018' : history2018.Janvier, 'Moyenne de 1961-1990' : history1961.Janvier},
-           { Mois: 'Février', 'Moyenne de 2018' : history2018.Février , 'Moyenne de 1961-1990' : history1961.Février},
-           { Mois: 'Mars', 'Moyenne de 2018' : history2018.Mars, 'Moyenne de 1961-1990' : history1961.Mars},
-           { Mois: 'Avril', 'Moyenne de 2018' : history2018.Avril, 'Moyenne de 1961-1990' : history1961.Avril},
-           { Mois: 'Mai', 'Moyenne de 2018' : history2018.Mai , 'Moyenne de 1961-1990' : history1961.Mai},
-           { Mois: 'Juin', 'Moyenne de 2018' : history2018.Juin , 'Moyenne de 1961-1990' : history1961.Juin},
-           { Mois: 'Juillet', 'Moyenne de 2018' : history2018.Juillet , 'Moyenne de 1961-1990' : history1961.Juillet},
-           { Mois: 'Aout', 'Moyenne de 2018' : history2018.Aout , 'Moyenne de 1961-1990' : history1961.Aout},
-           { Mois: 'Septembre', 'Moyenne de 2018' : history2018.Septembre , 'Moyenne de 1961-1990' : history1961.Septembre},
-           { Mois: 'Otobre', 'Moyenne de 2018' : history2018.Otobre , 'Moyenne de 1961-1990' : history1961.Otobre},
-           { Mois: 'Novembre', 'Moyenne de 2018' : history2018.Novembre , 'Moyenne de 1961-1990' : history1961.Novembre},
-           { Mois: 'Décembre', 'Moyenne de 2018' : history2018.Décembre, 'Moyenne de 1961-1990' : history1961.Décembre}
-       ];
+function initCurve(tab) {
+  var data = sampleData(tab);
 
-       var settings = {
-           title: "Température moyenne",
-           description: "",
-           enableAnimations: true,
-           showLegend: true,
-           padding: { left: 5, top: 5, right: 35, bottom: 5 },
-           titlePadding: { left: 90, top: 0, right: 0, bottom: 10 },
-           source: sampleData,
-           xAxis: {
-             dataField: 'Mois',
-             minValue: 0,
-             maxValue: 11,
-             unitInterval: 1,
-             tickMarks: {
-               visible: true,
-               interval: 1
-             },
-             gridLines: {
-               visible: true,
-               interval: 1
-             }
-           },
-           colorScheme: 'scheme05',
-           seriesGroups:
-             [
-              {
-               type: 'spline',
-               valueAxis:
-               {
-                 unitInterval: 5,
-                 title: { text: 'Temperature (°C)<br>' },
-                 labels: {
-                   horizontalAlignment: 'right',
-                   formatSettings: { decimalPlaces: 0 }
-                 }
-               },
-               series: [
-                     { dataField: 'Moyenne de 2018', displayText: 'Temperature moyenne de 2018' },
-                     { dataField: 'Moyenne de 1961-1990', displayText: 'Temperature moyenne de 1961-1990' }
-                 ]
-               }
-             ]
-       };
-       displayCurve(settings);
 
+ // prepare jqxChart settings
+ var settings = {
+     title: "Historique des température",
+     description: "Data changes every 3 seconds",
+     enableAnimations: true,
+     animationDuration: 1000,
+     enableAxisTextAnimation: true,
+     showLegend: true,
+     padding: {
+         left: 5,
+         top: 5,
+         right: 5,
+         bottom: 5
+     },
+     titlePadding: {
+         left: 0,
+         top: 0,
+         right: 0,
+         bottom: 10
+     },
+     source: data,
+     categoryAxis: {
+         unitInterval: 1,
+         gridLinesInterval: 2,
+         valuesOnTicks: false
+     },
+     colorScheme: 'scheme05',
+     seriesGroups: [{
+         type: 'spline',
+         columnsGapPercent: 50,
+         alignEndPointsWithIntervals: true,
+         xAxis: {
+            dataField: 'Date',
+            unitInterval: 1,
+            tickMarks: { visible: true, interval: 1 },
+            gridLinesInterval: { visible: true, interval: 1 },
+            valuesOnTicks: true,
+            padding: { bottom: 10 }
+                },
+         valueAxis: {
+             minValue: 15,
+             maxValue: 25,
+             description: 'Température en °C'
+         },
+         series: [{
+             dataField: 'Température',
+             displayText: 'Température'
+         }]
+     }]
+ };
+
+ displayCurve(settings);
+ refresh(tab);
+ function refresh(tab) {
+   var i=0;
+   for (var key in tab) {
+     data[i].Température = tab[key];
+     data[i].Date = key;
+     var i=i+1;
+   }
+   displayCurve(settings);
+   $('#chartContainer').jqxChart('update');
+ };
     }
 
 function initClickableGauge(data) {
@@ -274,6 +280,6 @@ function displayOutsideLightSwitch() {
 }
 
 function displayDateTimeInput() {
-  $("#DateTimeInput").jqxDateTimeInput({ width: 250, height: 25,  selectionMode: 'range', formatString: 'd'});
+  $("#DateTimeInput").jqxDateTimeInput({ width: 250, height: 25,  selectionMode: 'range', formatString: 'd', max:getToday()});
 
 }
