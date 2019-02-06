@@ -28,4 +28,3 @@ def parserButton(string, packet):
 	if (pressed == "released"):
 		pressed = "false"
 	requestTemp(floatValue, stringDesc, parsedPacket, pressed)
-

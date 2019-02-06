@@ -47,5 +47,3 @@ def requestButton(dateTime,pressed,idSensors):
 		else:
 			cursor.execute(add_data,(dateTime,"0",idSensors))
 		cnx.commit()
-
-
