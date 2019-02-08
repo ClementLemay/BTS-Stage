@@ -52,9 +52,9 @@ function initCurve(tab) {
          }]
      }]
  };
-
  displayCurve(settings);
  refresh(tab);
+
  function refresh(tab) {
    var i=0;
    for (var key in tab) {
@@ -62,10 +62,13 @@ function initCurve(tab) {
      data[i].Date = key;
      var i=i+1;
    }
+   // if (i>10) {
+   //
+   // }
    displayCurve(settings);
    $('#chartContainer').jqxChart('update');
  };
-    }
+}
 
 function initClickableGauge(data) {
   $('#container').jqxKnob({
@@ -281,5 +284,14 @@ function displayOutsideLightSwitch() {
 
 function displayDateTimeInput() {
   $("#DateTimeInput").jqxDateTimeInput({ width: 250, height: 25,  selectionMode: 'range', formatString: 'd', max:getToday()});
+}
 
+function displayComboBoxDate() {
+  var source = [
+                    "Choisissez une période",
+                    "Année en cours",
+                    "Mois en cours",
+                    "Jour en cours"
+		        ];
+  $("#ComboBoxDate").jqxComboBox({selectedIndex: 0, source: source, width: '200px', height: '30px'});
 }

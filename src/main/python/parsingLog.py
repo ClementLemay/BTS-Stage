@@ -7,7 +7,7 @@ def parserTemp(string, packet):
 	stringValue = string[-4:-1]
 	stringDesc = "Temperature"
 
-	floatTemp = float(stringValue)*0.147
+	floatTemp = float(stringValue)*0.1558823
 	floatTemp = round(floatTemp,2)
 
 	parsedPacket = str(packet)[0:11]

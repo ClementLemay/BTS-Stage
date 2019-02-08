@@ -68,7 +68,8 @@ function dateToString($strDate,$type) {
 			break;
 
 		case '4':
-			$date = substr($strDate,0,14);
+			$date = $strDate;
+			$date = substr($date,0,5);
 			break;
 	}
 	return $date;

@@ -40,7 +40,6 @@ function createSampleData(tab) {
 function getToday() {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate()); // even 32 is acceptable
-    console.log(`${tomorrow.getFullYear()}/${tomorrow.getMonth() + 1}/${tomorrow.getDate()}`);
     return `${tomorrow.getFullYear()}/${tomorrow.getMonth() + 1}/${tomorrow.getDate()}`;
 }
 
@@ -55,6 +54,5 @@ function sampleData (tab) {
       i=i+1;
     }
   }
-  console.log(data);
   return data;
 }

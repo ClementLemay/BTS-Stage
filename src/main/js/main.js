@@ -7,6 +7,7 @@ $(document).ready(function () {
 function loadData() {
   showSpinner();
   jQuery.ajax({
+     async: true,
      type: "GET",
      url: "server.php?service=loadData",
      timeout: 30000,
@@ -42,6 +43,7 @@ function onDataLoaded(data) {
   displayBarometer(mainData.getPressure());
   displayThermometer(mainData.getTemperature());
   displayDateTimeInput();
+  displayComboBoxDate();
   displayToolBar();
   initLightArea(mainData.getEntranceLight(),mainData.getOutdoorLight());
   colorAreaLight();
@@ -53,7 +55,6 @@ function sendClientInfo() {
       dataInJson(),
       randomID()
     );
-    console.log(data);
     jQuery.ajax(
     {
       type:"POST",
