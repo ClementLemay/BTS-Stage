@@ -1,9 +1,12 @@
 import mysql.connector
 import time
 from datetime import datetime
+import pytz
 
 def requestTemp(value, description,address,pressed):
-	dateTime = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+	tz_EU = pytz.timezone('Europe/Paris')
+	dateTime = datetime.now(tz_EU).strftime('%Y-%m-%d %H:%M:%S')
+
 	cnx = mysql.connector.connect(user='root', password='stage',
                               host='localhost',
                               database='Enocean',
@@ -21,6 +24,7 @@ def requestTemp(value, description,address,pressed):
    	idSensors = str(cursor2.fetchone())
 	idSensors=idSensors.replace("(", "")
 	idSensors=idSensors.replace(",)", "")
+	print dateTime
 	if(pressed ==""):
 		add_data=('insert Into DATA (Datetime,Value,IdSensors) Values (%s, %s, %s);')
 		cursor.execute(add_data,(dateTime,value,idSensors))

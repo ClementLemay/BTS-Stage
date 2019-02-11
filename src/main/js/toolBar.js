@@ -2,6 +2,8 @@ function displayToolBar() {
   displayLightSwitches();
   displayLightButtons();
   onClickDateTimeInput();
+  onChangeComboBoxDate();
+  onChangeDateTimeInput();
 }
 
 function displayLightButtons() {
@@ -106,6 +108,7 @@ function onUncheckedOutDoorLightSwitch() {
 function onClickDateTimeInput() {
   $("#DateTimeInput").on('change', function (event) {
     var range = $("#DateTimeInput").jqxDateTimeInput('getRange');
+    console.log(range);
     $("#jqxWidget").jqxDateTimeInput('setRange', range.from, range.to);
     if (range.from != null) {
       var strStartDate = range.from.toLocaleDateString();
@@ -114,6 +117,47 @@ function onClickDateTimeInput() {
       var endDate = strEndDate.substr(6,9)+"-"+strEndDate.substr(3,2)+"-"+strEndDate.substr(0,2)+" 23:59";
 
       graphicChange(startDate,endDate);
+    }
+  });
+}
+
+function onChangeDateTimeInput() {
+  $('#DateTimeInput').on('change', function (event)
+{
+$("#ComboBoxDate").jqxComboBox('selectItem', 'Choisissez une période' );
+});
+}
+
+function onChangeComboBoxDate() {
+  $('#ComboBoxDate').on('change', function (event)
+  {
+    var strDateNow=getToday();
+    var args = event.args;
+    var item = args.item;
+    if (args) {
+      var label = item.label;
+      switch (label) {
+        case "Année en cours":
+        var strYear=strDateNow.substring(0,4);
+        dateReturn1 = strYear+'/1/1';
+        dateReturn2 = strYear+'/12/31';
+        console.log(dateReturn1+'_'+ dateReturn2);
+          break;
+        case "Mois en cours":
+        var strMonth=strDateNow.substring(0,6);
+        dateReturn1 = strMonth+'/1';
+        dateReturn2 = strMonth+'/31';
+        console.log(dateReturn1+'_'+ dateReturn2);
+          break;
+        case "Jour en cours":
+        dateReturn1 = strDateNow+ ' 00:00';
+        dateReturn2 = strDateNow+' 23:59';
+        console.log(dateReturn1+'_'+ dateReturn2);
+          break;
+      }
+
+      //$("#DateTimeInput").jqxDateTimeInput('setRange', dateReturn1, dateReturn2 );
+      graphicChange(dateReturn1,dateReturn2);
     }
   });
 }

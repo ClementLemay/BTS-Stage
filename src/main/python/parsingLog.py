@@ -7,20 +7,23 @@ def parserTemp(string, packet):
 	stringValue = string[-4:-1]
 	stringDesc = "Temperature"
 
-	floatTemp = float(stringValue)*0.147
+	floatTemp = float(stringValue)*0.1558823
 	floatTemp = round(floatTemp,2)
 
 	parsedPacket = str(packet)[0:11]
+
 	if(parsedPacket!="FF:88:7D:00"):
 		requestTemp(floatTemp, stringDesc, parsedPacket, pressed)
 
 def parserDoor(string, packet):
+	dateTimePacket = str(packet)[0:19]
         floatValue = float(string[-2:-1])
 	stringDesc = string[-40:-33]
         parsedPacket = str(packet)[0:11]
 	requestTemp(floatValue, stringDesc, parsedPacket, pressed)
 
 def parserButton(string, packet):
+	dateTimePacket = str(packet)[0:19]
 	parsedPacket = str(packet)[0:11]
 	stringDesc = string[18:27]
 	floatValue = string[96:97]
