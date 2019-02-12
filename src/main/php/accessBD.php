@@ -1,7 +1,6 @@
 <?php
 function connect() {
   $mysqli = new mysqli('127.0.0.1', 'root', 'stage', 'Enocean');
-
   return $mysqli;
 }
 
@@ -15,8 +14,7 @@ $sql = "SELECT DATA.Value
             AND DATA.Datetime = groupel.maxDate
             AND DATA.IdSensors LIKE '$idSensor';";
 $req = mysqli_query(connect(),$sql);
-while($data = mysqli_fetch_assoc($req))
-    {
+while($data = mysqli_fetch_assoc($req)) {
     $vreturn = $data['Value'];
     }
 if ($vreturn == 0 || $vreturn == 1) {

@@ -39,7 +39,7 @@ function createSampleData(tab) {
 
 function getToday() {
     const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate()); // even 32 is acceptable
+    tomorrow.setDate(tomorrow.getDate());
     return `${tomorrow.getFullYear()}/${tomorrow.getMonth() + 1}/${tomorrow.getDate()}`;
 }
 

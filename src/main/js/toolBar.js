@@ -3,7 +3,6 @@ function displayToolBar() {
   displayLightButtons();
   onClickDateTimeInput();
   onChangeComboBoxDate();
-  onChangeDateTimeInput();
 }
 
 function displayLightButtons() {
@@ -107,25 +106,17 @@ function onUncheckedOutDoorLightSwitch() {
 
 function onClickDateTimeInput() {
   $("#DateTimeInput").on('change', function (event) {
+    $("#ComboBoxDate").jqxComboBox('selectItem', 'Choisissez une période' );
     var range = $("#DateTimeInput").jqxDateTimeInput('getRange');
-    console.log(range);
     $("#jqxWidget").jqxDateTimeInput('setRange', range.from, range.to);
     if (range.from != null) {
       var strStartDate = range.from.toLocaleDateString();
       var strEndDate = range.to.toLocaleDateString();
       var startDate = strStartDate.substr(6,9)+"-"+strStartDate.substr(3,2)+"-"+strStartDate.substr(0,2)+" 00:00";
       var endDate = strEndDate.substr(6,9)+"-"+strEndDate.substr(3,2)+"-"+strEndDate.substr(0,2)+" 23:59";
-
       graphicChange(startDate,endDate);
     }
   });
-}
-
-function onChangeDateTimeInput() {
-  $('#DateTimeInput').on('change', function (event)
-{
-$("#ComboBoxDate").jqxComboBox('selectItem', 'Choisissez une période' );
-});
 }
 
 function onChangeComboBoxDate() {
@@ -139,25 +130,19 @@ function onChangeComboBoxDate() {
       switch (label) {
         case "Année en cours":
         var strYear=strDateNow.substring(0,4);
-        dateReturn1 = strYear+'/1/1';
-        dateReturn2 = strYear+'/12/31';
-        console.log(dateReturn1+'_'+ dateReturn2);
+        graphicChange(strYear+'/1/1',strYear+'/12/31');
           break;
         case "Mois en cours":
         var strMonth=strDateNow.substring(0,6);
-        dateReturn1 = strMonth+'/1';
-        dateReturn2 = strMonth+'/31';
-        console.log(dateReturn1+'_'+ dateReturn2);
+        graphicChange(strMonth+'/1',strMonth+'/31');
           break;
         case "Jour en cours":
-        dateReturn1 = strDateNow+ ' 00:00';
-        dateReturn2 = strDateNow+' 23:59';
-        console.log(dateReturn1+'_'+ dateReturn2);
+        graphicChange(strDateNow+ ' 00:00',strDateNow+' 23:59');
           break;
-      }
+        case "Choisissez une période":
+        break
 
-      //$("#DateTimeInput").jqxDateTimeInput('setRange', dateReturn1, dateReturn2 );
-      graphicChange(dateReturn1,dateReturn2);
+      }
     }
   });
 }
