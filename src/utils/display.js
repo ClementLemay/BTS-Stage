@@ -52,7 +52,11 @@ function initCurve(tab) {
               },
             },
            valueAxis: {
+<<<<<<< HEAD
                minValue: 13,
+=======
+               minValue: 15,
+>>>>>>> 236ead08bbe28d8be5bc8fbe47b42ddf2b870045
                maxValue: 25,
                description: 'Température en °C'
          },
@@ -77,6 +81,7 @@ function initCurve(tab) {
   }
 
   function countNbValues() {
+<<<<<<< HEAD
     var vreturn;
     if (data.length>30) {
       vreturn = 2;
@@ -87,6 +92,13 @@ function initCurve(tab) {
       vreturn = 1;
     }
     return (vreturn);
+=======
+    if (data.length>30) {
+      return 2;
+    } else {
+      return 1;
+    }
+>>>>>>> 236ead08bbe28d8be5bc8fbe47b42ddf2b870045
   }
 }
 
