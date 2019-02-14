@@ -1,11 +1,8 @@
 function initCurve(tab) {
   var data = sampleData(tab);
-
-
- // prepare jqxChart settings
  var settings = {
      title: "Historique des température",
-     description: "Data changes every 3 seconds",
+     description: "",
      enableAnimations: true,
      animationDuration: 1000,
      enableAxisTextAnimation: true,
@@ -13,7 +10,7 @@ function initCurve(tab) {
      padding: {
          left: 5,
          top: 5,
-         right: 5,
+         right: 25,
          bottom: 5
      },
      titlePadding: {
@@ -35,16 +32,29 @@ function initCurve(tab) {
          alignEndPointsWithIntervals: true,
          xAxis: {
             dataField: 'Date',
-            unitInterval: 1,
-            tickMarks: { visible: true, interval: 1 },
-            gridLinesInterval: { visible: true, interval: 1 },
+            unitInterval: countNbValues(),
+            tickMarks: {
+              visible: true,
+              interval: 1
+            },
+            gridLinesInterval: {
+              visible: true,
+              interval: 1
+            },
             valuesOnTicks: true,
-            padding: { bottom: 10 }
-                },
-         valueAxis: {
-             minValue: 15,
-             maxValue: 25,
-             description: 'Température en °C'
+            padding: {
+              bottom: 10
+            },
+            labels: {
+                angle: -45,
+                rotationPoint: 'topright',
+                offset: { x: 0, y: 0 }
+              },
+            },
+           valueAxis: {
+               minValue: 13,
+               maxValue: 25,
+               description: 'Température en °C'
          },
          series: [{
              dataField: 'Température',
@@ -62,12 +72,22 @@ function initCurve(tab) {
      data[i].Date = key;
      var i=i+1;
    }
-   // if (i>10) {
-   //
-   // }
    displayCurve(settings);
    $('#chartContainer').jqxChart('update');
- };
+  }
+
+  function countNbValues() {
+    var vreturn;
+    if (data.length>30) {
+      vreturn = 2;
+      if (data.length>70) {
+      vreturn = 3;
+      }
+    } else {
+      vreturn = 1;
+    }
+    return (vreturn);
+  }
 }
 
 function initClickableGauge(data) {
@@ -109,9 +129,9 @@ function initClickableGauge(data) {
     var inputOptions = {
         width: 180,
         height: '40px',
-        decimal: data.getPressure(), // starting value same as widget
-        min: 0,  // same as widget
-        max: 100, // same as widget
+        decimal: data.getPressure(),
+        min: 0,
+        max: 100,
         textAlign: 'center',
         decimalDigits: 1,
         inputMode: 'simple',
